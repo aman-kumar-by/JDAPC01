@@ -32,7 +32,7 @@ workflows:
       trigger: "inbound_jms"
   	  publisher: "outbound_jms"
       publisherOptions:
-   		  queue_name: "ZDEBMAS07_MESSAGE"
+        queue_name: "ZDEBMAS07_MESSAGE"
         message:
           message_format: "json"
           message_type: "bydm"
