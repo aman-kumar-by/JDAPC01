@@ -12,7 +12,7 @@ workflows:
         message:
           message_format: "json"
           message_type: "catman-api-message"
-    item:
+   item:
       trigger: "inbound_jms"
       publisher: "catman_api"
       publisherOptions:
