@@ -1,0 +1,55 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+!service-definition-v1
+name: LSR-2020.1.0.0
+description: LSR adapter - request details wrt SAP adapter
+requests:
+- 'GS1:ACOD:GS1_JDA 2020.1.0'
+- 'GS1:APO:GS1_JDA 2020.1.1'
+- 'GS1:ACUSTORD:GS1_JDA 2020.1.1'
+- 'GS1:AVLL:GS1_JDA 2020.1.0'
+- 'GS1:BOD:GS1_JDA 2020.1.0'
+- 'GS1:BOM:GS1_JDA 2020.1.0'
+- 'GS1:BOMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:OCCAL:GS1_JDA 2020.1.0'
+- 'GS1:DELIVERY:GS1_JDA 2020.1.0'
+- 'GS1:DFU:GS1_JDA 2020.1.0'
+- 'GS1:DFUPRICE:GS1_JDA 2019.1.1'
+- 'GS1:DMDGROUP:GS1_JDA 2019.1.1'
+- 'GS1:DMDUNIT:GS1_JDA 2020.1.0'
+- 'GS1:DMDUNITIDOC:GS1_JDA 2020.1.0'
+- 'GS1:PRODHIER:GS1_JDA 2019.1.1'
+- 'GS1:FIRMPLANNEDORDER:GS1_JDA 2020.1.0'
+- 'GS1:PR:GS1_JDA 2020.1.1'
+- 'GS1:ITEM:GS1_JDA 2020.1.0'
+- 'GS1:ITEMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:LOC:GS1_JDA 2020.1.0'
+- 'GS1:CUSMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:VENMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:TPSLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:MGEVENT:GS1_JDA 2019.1.1'
+- 'GS1:CUSMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:VENMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:PRODM:GS1_JDA 2020.1.0'
+- 'GS1:PURCHM:GS1_JDA 2019.1.1'
+- 'GS1:RELATION:GS1_JDA 2020.1.0'
+- 'GS1:RESOURCE:GS1_JDA 2020.1.0'
+- 'GS1:SO:GS1_JDA 2019.1.1'
+- 'GS1:SCHEDULEDRECEIPTS:GS1_JDA 2020.1.0'
+- 'GS1:SHHIS:GS1_JDA 2019.1.1'
+- 'GS1:SKUPARAM:GS1_JDA 2020.1.0'
+- 'GS1:SKUPARAMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:VLL:GS1_JDA 2020.1.0'
+- 'GS1:TMODE:GS1_JDA 2020.1.0'

@@ -1,0 +1,700 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+SAP:
+    #These properties are used to create EDI_DC40 segment for Inbound (BY to SAP) entities using IDOC
+    MANDT: "800"
+    #OUTMOD is 4 for collective idoc and 2 for single idoc
+    OUTMOD: "4"
+    RCVPOR: "SAPODC"
+    RCVPRN: "ODCCLNT800"
+    RCVPRT: "LS"
+    SNDPOR: "JDACONNECT"
+    SNDPRN: "JDACONNECT"
+    SNDPRT: "LS"
+    TABNAM: "EDI_DC40"
+    #Below properties will be used to populate EDI_DC40/[IDOC details] in Plan Arrival, Rec_Ship and VLL inbound entities (SCPO - SAP)
+    PA:
+        IDOCTYP: "PORDCR103"
+        ITEMCAT: "7"
+        MESTYP: "PORDCR1"
+        POITEM: "00010"
+        SCHEDLINE: "0001"
+    #Below properties will be used to populate EDI_DC40/[IDOC details] in Plan Recquisition and Plan Order
+    IDOCTYP: "PREQCR01"
+    MESTYP: "PREQCR"
+    GL:
+        AR_IDOCTYP_ACC: "ACC_BILLING02"
+        AR_MESTYP_ACC: "ACC_BILLING"
+        AR_IDOCTYP_FID: "FIDCCP02"
+        AR_MESTYP_FID: "FIDCC2"
+        AR_IDOCTYP_ORDERS: "ORDERS05"
+        AR_MESTYP_ORDERS: "ORDERS"
+        AP_IDOCTYP_ACL: "ACLPAY01"
+        AP_MESTYP_ACL: "ACLPAY"
+        AP_IDOCTYP_FID: "FIDCCP02"
+        AP_MESTYP_FID: "FIDCC2"
+        AP_IDOCTYP_PORDCR: "PORDCR103"
+        AP_MESTYP_PORDCR: "PORDCR1"
+        AP_IDOCTYP_RECEIPT: "ACC_INVOICE_RECEIPT03"
+        AP_MESTYP_RECEIPT: "ACC_INVOICE_RECEIPT"
+    VM:
+        AP_IDOCTYP_ACL: "ACLPAY01"
+        AP_MESTYP_ACL: "ACLPAY"
+        AR_IDOCTYP_ACC: "ACC_BILLING02"
+        AR_MESTYP_ACC: "ACC_BILLING"
+    RCVADV:
+        IDOCTYP: "MBGMCR03"
+        MESTYP: "MBGMCR"
+    INVOPR:
+        IDOCTYP: "MBGMCR03"
+        MESTYP: "MBGMCR"
+    ORDCNL:
+        IDOCTYP: "SHP_OBDLV_CHANGE01"
+        MESTYP: "SHP_OBDLV_CHANGE"
+    DESADV:
+        IDOCTYP: "DELVRY07"
+        MESTYP: "WHSCON"
+        VHILM: "PK-100"
+    TLINB:
+        IDOCTYP: "SHPMNT06"
+        MESTYP: "SHPMNT"
+inbound:
+    # To enable or disable framework provided archival component for inbound entities (BY to SAP)
+    archiveEnabled: "true"
+    generalLedger:
+      # This property defines the solution (either CSV, BAPI or IDOC) which will be used to process generalLedger message.
+      # Only one solution can be used at one time to process generalLedger information.
+      # Possible values are "CSV", "BAPI" and "IDOC".
+      solution : "IDOC"
+      accountReceivable:
+        # Possible values for generalLedger accountReceivable idoc type are - 'FIDCCP02', 'ACC_BILLING02' and 'ORDER05' for core solution
+        # service-definition.yaml file should be updated based on the idoc type.
+        idocType: "FIDCCP02"
+        # This property defines BAPI root element that SAP will receive for accountReceivable generalLedger message
+        # service-definition.yaml file should be updated based on the bapi type.
+        bapiType: "BAPI_ACC_DOCUMENT_POST"
+        #This property defines the CSV file name which will be used for file name after processing accountReceivable generalLedger message
+        # service-definition.yaml file should be updated based on the csv file name.
+        csvFileName: "GLT_AR"
+      accountPayable:
+        # Possible values for generalLedger accountPayable idoc type are - 'FIDCCP02', 'ACLPAY01', 'RECEIPT03' and 'PORDCR103' for core solution
+        # service-definition.yaml file should be updated based on the idoc type.
+        idocType: "ACLPAY01"
+        # This property defines BAPI root element that SAP will receive for accountPayable generalLedger message
+        # service-definition.yaml file should be updated based on the bapi type.
+        bapiType: "BAPI_ACC_DOCUMENT_POST"
+        #This property defines the CSV file name which will be used for file name after processing accountPayable generalLedger message
+        # service-definition.yaml file should be updated based on the csv file name.
+        csvFileName: "GLT_AP"
+    voucher:
+      # This property defines the solution (either CSV or IDOC) which will be used to process voucher message.
+      # Only one solution can be used at one time to process voucher information.
+      # Possible values are "CSV", "BAPI" and "IDOC".
+      solution : "CSV"
+      accountPayable:
+        # Possible values for voucher accountPayable idoc type are - 'ACLPAY01' for core solution
+        # service-definition.yaml file should be updated based on the idoc type.
+        idocType: "ACLPAY01"
+        # This property defines BAPI root element that SAP will receive for accountPayable voucher message
+        # service-definition.yaml file should be updated based on the bapi type.
+        bapiType: "BAPI_VOUCHER_AP"
+        #This property defines the CSV file name which will be used for file name after processing accountPayable voucher message
+        # service-definition.yaml file should be updated based on the csv file name.
+        csvFileName: "ACCPOSTAPP01"
+      accountReceivable:
+        # Possible values for voucher accountReceivable idoc type are - 'ACC_BILLING02' for core solution
+        # service-definition.yaml file should be updated based on the idoc type.
+        idocType: "ACC_BILLING02"
+        # This property defines BAPI root element that SAP will receive for accountReceivable voucher message
+        # service-definition.yaml file should be updated based on the bapi type.
+        bapiType: "BAPI_VOUCHER_AR"
+        #This property defines the CSV file name which will be used for file name after processing accountReceivable voucher message
+        # service-definition.yaml file should be updated based on the csv file name.
+        csvFileName: "ACCPOSTARP01"
+    planArrival:
+        # This property defines IDOC root element that SAP will receive for plannedSupplyMessage: planArrival inbound entity
+        idocType: "PORDCR103"
+    plannedOrder:
+        # This property defines BAPI root element that SAP will receive for plannedSupplyMessage: plannedOrder inbound entity
+        bapiType: "BAPI_PLANNEDORDER_CREATE"
+    planPurch:
+        # This property defines IDOC root element that SAP will receive for plannedSupplyMessage: planPurch inbound entity
+        idocType: "PREQCR01"
+    recommendedShipments:
+        # This property defines IDOC root element that SAP will receive for plannedSupplyMessage: recommendedShipments inbound entity
+        idocType: "PORDCR103"
+    shipment:
+        # This property defines IDOC root element that SAP will receive for Shipment inbound entity
+        idocType: "SHPMNT06"
+    vehicleLoad:
+        # This property defines IDOC root element that SAP will receive for plannedSupplyMessage: vehicleLoad inbound entity
+        idocType: "PORDCR103"
+    receivingAdvice:
+        # This property defines IDOC root element that SAP will receive for receivingAdvice inbound entity
+        idocType: "MBGMCR03"
+    inventoryOperation:
+        # This property defines IDOC root element that SAP will receive for inventoryOperation inbound entity
+        idocType: "MBGMCR03"
+    orderLineCancel:
+        # This property defines IDOC root element that SAP will receive for Order and Order Line Cancel inbound entity
+        idocType: "SHP_OBDLV_CHANGE01"
+    despatchAdvice:
+        # This property defines IDOC root element that SAP will receive for despatchAdvice inbound entity
+        idocType: "DELVRY07"
+    planogram:
+        # This property defines BAPI root element that SAP will receive for planogramMessage: planogram inbound entity
+        bapiType: "BAPISHELFHDIMP"
+    transportLoad:
+        # This property defines IDOC root element that SAP will receive for transportLoad inbound entity
+        idocType: "SHPMNT06"
+sap:
+    #=======================================
+    ##*******Below are the entity wise properties and are applicable for BYDM model************##
+##To Enable / Disable the process for specific entities (Ex : sap.ITEM.process.enable=true to process the item entity)
+    #To enable/disable Actual Customer Order Delivery CSV workflow
+    ACOD:
+        process:
+            enable: "true"
+    #To enable/disable Actual Customer Order CSV workflow
+    ACUSTORD:
+        process:
+            enable: "true"
+    #To enable/disable Actual Purchase Order CSV workflow
+    APO:
+        process:
+            enable: "true"
+    #To enable/disable Account Payable General Ledger workflow
+    APGL:
+        process:
+            enable: "true"
+    #To enable/disable Account Receivable General Ledger workflow
+    ARGL:
+        process:
+            enable: "true"
+    #To enable/disable Actual Vehicle Load Line Outbound CSV workflow
+    AVLL:
+        process:
+            enable: "true"
+    BOD:
+        process:
+            enable: "true"
+    BOM:
+        process:
+            enable: "true"
+    BOMIDOC:
+        process:
+            enable: "true"
+    CUSTORD:
+        process:
+            enable: "true"
+    CUSTORDIDOC:
+        process:
+            enable: "true"
+    DELIVERY:
+        process:
+            enable: "true"
+    DFU:
+        process:
+            enable: "true"
+    DFUPRICE:
+        process:
+            enable: "true"
+    DMDGROUP:
+        process:
+            enable: "true"
+    DMDUNIT:
+        process:
+            enable: "true"
+    DMDUNITIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Exchange Rate CSV workflow
+    EXCH:
+        process:
+            enable: "true"
+    #To enable/disable Exchange Rate IDOC workflow
+    EXCHIDOC:
+        process:
+            enable: "true"
+    FIRMPLANNEDORDER:
+        process:
+            enable: "true"
+    #To enable/disable Item Batch CSV workflow
+    IBATCH:
+        process:
+            enable: "true"
+    ITEM:
+        process:
+            enable: "true"
+    ITEMIDOC:
+        process:
+            enable: "true"
+    ITEMPRICEIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Plants Location CSV workflow
+    LOC:
+        process:
+            enable: "true"
+    #To enable/disable Customer Master Location IDOC workflow
+    CUSMASLOCIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Vendor Master Location IDOC workflow
+    VENMASLOCIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Transport Planning System Location IDOC workflow
+    TPSLOCIDOC:
+        process:
+            enable: "true"
+    MGEVENT:
+        process:
+            enable: "true"
+    #To enable/disable Open Closed Calendar workflow
+    OCCAL:
+        process:
+            enable: "true"
+    ONHAND:
+        process:
+            enable: "true"
+    #To enable/disable Customer Master Party IDOC workflow
+    CUSMASPTYIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Vendor Master Party IDOC workflow
+    VENMASPTYIDOC:
+        process:
+            enable: "true"
+    PLANARRIVAL:
+        process:
+            enable: "true"
+    PLANORDER:
+        process:
+            enable: "true"
+    PLANPURCHASE:
+        process:
+            enable: "true"
+    PO:
+        process:
+            enable: "true"
+    POIDOC:
+        process:
+            enable: "true"
+    TOIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Point Of Sale History CSV workflow
+    POSH:
+        process:
+            enable: "true"
+    #To enable/disable Firm Plan Purch CSV workflow
+    PR:
+        process:
+            enable: "true"
+    #To enable/disable Demand Unit Heirarchy CSV workflow
+    PRODHIER:
+        process:
+            enable: "true"
+    #To enable/disable Product Heirarchy IDOC workflow
+    PRODHIERIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Production Method CSV workflow
+    PRODM:
+        process:
+            enable: "true"
+    #To enable/disable Promotions CSV workflow
+    PROMO:
+        process:
+            enable: "true"
+    #To enable/disable Purchase Method CSV workflow
+    PURCHM:
+        process:
+            enable: "true"
+    RECEIVINGADVICE:
+        process:
+            enable: "true"
+    RECSHIP:
+        process:
+            enable: "true"
+    RELATION:
+        process:
+            enable: "true"
+    RESOURCE:
+        process:
+            enable: "true"
+    #To enable/disable Retail Article CSV workflow
+    RETITEM:
+        process:
+            enable: "true"
+    #To enable/disable Retail Article IDOC workflow
+    RETITEMIDOC:
+        process:
+            enable: "true"
+    SCHEDULEDRECEIPTS:
+        process:
+            enable: "true"
+    SHHIS:
+        process:
+            enable: "true"
+     #To enable/disable Shipment Inbound workflow
+    SHIPMENT:
+        process:
+            enable: "true"
+    SKUPARAM:
+        process:
+            enable: "true"
+    SKUPARAMIDOC:
+        process:
+            enable: "true"
+    SO:
+        process:
+            enable: "true"
+    #To enable/disable transmode workflow
+    TMODE:
+        process:
+            enable: "true"
+    UOM:
+        process:
+            enable: "true"
+    #To enable/disable Vehicle Load Inbound workflow
+    VEHICLELOAD:
+        process:
+            enable: "true"
+    #To enable/disable Vehicle Load Outbound workflow
+    VLL:
+        process:
+            enable: "true"
+    #To enable/disable OpeningHour workflow
+    OPNHR:
+        process:
+            enable: "true"
+    #To enable/disable Customer Master Location CSV workflow
+    CUSMASLOC:
+        process:
+            enable: "true"
+    #To enable/disable Vendor Master Location CSV workflow
+    VENMASLOC:
+        process:
+            enable: "true"
+    #To enable/disable Customer Master Party CSV workflow
+    CUSMASPTY:
+        process:
+            enable: "true"
+    #To enable/disable Vendor Master Party CSV workflow
+    VENMASPTY:
+        process:
+            enable: "true"
+    #To enable/disable Retail Locatiom CSV workflow
+    RETLOC:
+        process:
+            enable: "true"
+    #To enable/disable Shipment Outbound IDOC workflow
+    TRANSPORTCHAIN:
+        process:
+            enable: "true"
+    #To enable/disable Account Payable Voucher Inbound workflow
+    APVOUCHER:
+        process:
+            enable: "true"
+    #To enable/disable Account Receivable Voucher CSV workflow
+    ARVOUCHER:
+        process:
+            enable: "true"
+    #To enable/disable Despatch Advice IDOC workflow
+    DESPATCHADVICEIDOC:
+        process:
+            enable: "true"
+    #To enable/disable Receiving Advice Inbound workflow
+    RCVADV:
+        process:
+            enable: "true"
+    #To enable/disable Inventory Operation STS Inbound workflow
+    INVOPRSTS:
+        process:
+            enable: "true"
+    #To enable/disable Inventory Operation ADJ Inbound workflow
+    INVOPRADJ:
+        process:
+            enable: "true"
+    #To enable/disable Inventory Operation ATTR Inbound workflow
+    INVOPRATTR:
+        process:
+            enable: "true"
+    #To enable/disable transportLoad outbound workflow
+    TRANSPORTLOADIDOC:
+        process:
+            enable: "true"
+    #To enable/disable materialSubstitute workflow
+    MATSUB:
+        process:
+            enable: "true"
+    #To enable/disable OrderLineCancel Inbound workflow
+    ORDCANCEL:
+        process:
+            enable: "true"
+    #To enable/disable despatchAdvice Inbound workflow
+    DESADVINB:
+        process:
+            enable: "true"
+    #To enable/disable planogram Inbound workflow
+    PLANOGRAM:
+        process:
+            enable: "true"
+    #To enable/disable TL Inbound workflow
+    TLINB:
+        process:
+            enable: "true"
+    #==============================
+    #Workflow wise (SAP to BY) - Receiver details
+    receiver:
+        #Actual customer Order delivery workflow
+        acod: "LSR.GLOBAL"
+        actualPurchaseOrder:
+            csv: "LSR.GLOBAL"
+        actualCustomerOrder:
+            csv: "LSR.GLOBAL"
+        actualVehicleLoadLine: "LSR.GLOBAL"
+        bod: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL"
+        bom: 
+             csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL"
+             idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL"
+        calendar: "SCPO.GLOBAL,LSR.GLOBAL"
+        customerOrder:
+            csv: "SCPO.GLOBAL"
+            idoc: "LCT.GLOBAL"
+        delivery: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL"
+        dfu: "SCPO.GLOBAL,LSR.GLOBAL"
+        dfuPrice: "SCPO.GLOBAL,LDE.GLOBAL"
+        dmdGroup: "SCPO.GLOBAL,LSR.GLOBAL"
+        dmdUnit: 
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LDE.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LDE.GLOBAL"
+        dmdUnitHierarchy: 
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LDE.GLOBAL"
+            idoc: "CATMAN.GLOBAL"
+        #Receiver details for Exchange Rate workflow
+        exch:
+             csv: "LDE.GLOBAL"
+             idoc: "LDE.GLOBAL"
+        firmPlanPurch: "SCPO.GLOBAL,LSR.GLOBAL"
+        firmPlannedOrder: "SCPO.GLOBAL,LSR.GLOBAL"
+        inventory:
+            onhand: "SCPO.GLOBAL,LCT.GLOBAL,LDE.GLOBAL,LSR.GLOBAL"
+        item: 
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL,WMS.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL,WMS.GLOBAL"
+        itemBatch: "LCT.GLOBAL"
+        itemPrice:
+            idoc: "CATMAN.GLOBAL"
+        plantsLocation:
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+        vendorLocation:
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL,WMS.GLOBAL"
+            supplier: "0001,0002"
+            corporateEntity: "0007"
+        customerLocation:
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL,WMS.GLOBAL,CATMAN.GLOBAL"
+            buyer: "0001"
+            shipTo: "0002,CUS"
+            billTo: "0004"
+        transportPlanningSystemLocation:
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+        movingEvent: "SCPO.GLOBAL,LSR.GLOBAL,LDE.GLOBAL"
+        openingHours: "LDE.GLOBAL"
+        customerParty:
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+        vendorParty:
+            csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+            idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,TMS.GLOBAL,LDE.GLOBAL"
+            supplier: "0001,0002"
+            carrier: "0005"
+            corporateEntity: "0007"
+        posHistory: "SCPO.GLOBAL,LDE.GLOBAL"
+        productionMethod: "SCPO.GLOBAL,LSR.GLOBAL"
+        promotion: "SCPO.GLOBAL,LDE.GLOBAL"
+        purchMethod: "SCPO.GLOBAL,LSR.GLOBAL"
+        transferOrder: "LCT.GLOBAL,LDE.GLOBAL"
+        purchaseOrder:
+            csv: "SCPO.GLOBAL"
+            idoc: "LCT.GLOBAL,SCPO.GLOBAL,LDE.GLOBAL"
+        receiving:
+            advice: "LCT.GLOBAL"
+        relation: "SCPO.GLOBAL,LCT.GLOBAL,LSR.GLOBAL,LDE.GLOBAL"
+        resource: "SCPO.GLOBAL,LSR.GLOBAL"
+        retailArticle: 
+             csv: "CATMAN.GLOBAL"
+             idoc: "CATMAN.GLOBAL"
+        retailLocation: "CATMAN.GLOBAL"
+        salesOrder: "SCPO.GLOBAL,LSR.GLOBAL"
+        scheduledReceipt: "SCPO.GLOBAL,LSR.GLOBAL"
+        shipmentHistory: "SCPO.GLOBAL,LSR.GLOBAL"
+        skuParam:
+             csv: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,LDE.GLOBAL"
+             idoc: "SCPO.GLOBAL,LSR.GLOBAL,LCT.GLOBAL,LDE.GLOBAL"
+        transMode: "SCPO.GLOBAL,LSR.GLOBAL"
+        uom: "SCPO.GLOBAL,LDE.GLOBAL"
+        vehicleLoadLine: "SCPO.GLOBAL,LSR.GLOBAL"
+        transportChain: "LCT.GLOBAL"
+        despatchAdvice: "WMS.GLOBAL"
+        transportLoad :
+             idoc: "WMS.GLOBAL"
+        matsub : "LDE.GLOBAL"
+    demandChannel:
+        #************** Flow configuration for outbound from SAP ***********#
+
+        # demandChannel in Canonical Model or DMDGROUP in BY Application is an important information
+        # In current version - demandChannel will be always determined by VKQRG (SalesOrg) and VTWEG (Channel)
+        # sap.demandChannel=VKORG,VTWEG - This is not configurable. The delimiter support is only hyphen as of now. 
+        # Please don't change below property for delimiter
+        delimiter: '-'
+    # sender name to be used in BYDM Model headers
+    sender: "SAP.GLOBAL"
+    # Default Currency Code  
+    defaultCurrencyCode: "USD"
+    #Below properties defines the root element of SAP IDOC for outbound entities, comma seperated values are allowed to provide multiple root elements.
+    billOfMaterial:
+        idocType: "BOMMAT04"
+    delivery:
+        idocType: "DELVRY07"
+    dmdUnitHierarchy:
+        idocType: "WMATGRP01"
+    exchangeRate:
+        idocType: "EXCHANGE_RATE01"
+    firmPlannedOrder:
+        idocType: "LOIPLO01"
+    item:
+        idocType: "MATMAS05"
+    itemPrice:
+        idocType: "COND_A04"
+    customerLocation:
+        idocType: "ZDEBMAS07"
+    vendorLocation:
+        idocType: "CREMAS05"
+    transportPlanningSystemLocation:
+        idocType: "TPSLOC01"
+    order:
+        idocType: "ORDERS05"
+    customerParty:
+        idocType: "DEBMAS07"
+    vendorParty:
+        idocType: "CREMAS05"
+    receivingAdvice:
+        idocType: "MBGMCR03"
+    resource:
+        idocType: "LOIWCS02"
+    retailArticle:
+        idocType: "ARTMAS06"
+    scheduledReceipts:
+        idocType: "LOIPRO01"
+    transportChain:
+        idocType: "SHPMNT06"
+    despatchAdvice:
+        idocType: "DELVRY07"
+    transportLoad:
+        idocType: "SHPMNT06"
+    #=======================================
+    notification:
+        #SAP Adapter csv process notification root and segment
+        idoc:
+            root: "ZBYSFTPN"
+            segment: "ZBYSFTPN01"
+    errorfile:
+        # The directory for keeping the error out records
+        dirname: "/sap_FileShare/ERROR_FILES"
+    ##****** SalesOrder History Net Change Request ***** 
+    #   Follow below grammar for NetChange weekCycle and numberOfWeekCycles
+    #   numberOfWeekCycles grammar should be 1 week =1 and n week = n
+    #   weekCycle grammar should be week = 7 and Daily = 1
+    netchange:
+        weekCycle: "7"
+        numberOfWeekCycles: "3"
+        weekstartday: "4"
+    salesorder:
+        #This is used in Netchange Flow of salesOrder. Cron Job will be scheduled for this.
+        #SAP Idoc properties
+        msg:
+            type: "X"
+        tmpPath: "G:\\LOCATIONM\\"
+    shipment:
+        history:
+            tmpPath: "G:\\LOCATIONM\\"
+    shipmentorder:
+        #This is used in Netchange Flow of shipmentHistory. Cron Job will be scheduled for this.
+        #SAP Idoc properties 
+        msg:
+            type: "X"
+
+#=========================================
+#This property will be used to set categories in connect logger(Framework component)
+'connect':
+    logger:
+        categories:
+            sap: "com.sap"
+outbound:
+    # To enable or disable framework provided archival component for outbound entities (SAP to BY)
+    archiveEnabled: "true"
+#BYDM data packet size
+# This batch size determines the chunk size of data elements for one batch (outbound from SAP Adapter). If input volume is very large
+# We need to configure the size properly based on the input volume expected
+batch:
+    #To adjust aggregation size for batch jobs in SAP Adapter
+    agg:
+        packetSize: "10000"
+    #To adjust batch packet size for batch jobs in SAP Adapter
+    packetSize: "5000"
+    # Maximum number of failed records allowed in batch processing 
+    max:
+        failRecords: "-1"
+thread:
+    execution:
+        #its the maximum time that any event batch takes. For example if item entity's one batch takes 60000 miliseconds to complete than this is the value of threshold.
+        threshold: "60000"
+    sleep:
+        #its the sleep time a thread will have to again wake up and check.
+        time: "30000"
+#This property represents number of differences permissible in BYDM messages while comparing generated and expected BYDM messages during MUnits execution
+munit:
+    xml:
+        maxDiff: '10'
+# Production Method Entity : Allowed Production Routing Operation Method (either 'SEQUENTIAL' or 'PARALLEL')
+production:
+    method: "SEQUENTIAL"
+valid:
+    capacity:
+        # Resource entity valid capacities (This is only used in Resource/Capacities integration flow from SAP to BY Application)
+        categories: "001,002"
+default:
+    date:
+        discontinueDate: "99991231"
+        effectiveDate: "19000101"
+supportedMaterialTypeList : "FERT,FRIP,HAWA"
+    #To enable/disable BYDM Model Validator framework component
+bydm:
+    modelVersions: '#[["BYDM 2021.3.0","BYDM 2021.2.0-0","BYDM 2021.1.0","BYDM 2020.3.0.2","BYDM 2020.3.0-1","BYDM 2020.3.0-0","BYDM 2020.2.0"]]'
+    isValidation:
+        enabled: "false"
+    reconnection:
+        attempts: '2'
+        frequency: '2000'
+bulkCsv:
+    # To enable/disable execution of bulk CSV workflows
+    enable: "false"
+    # To add/remove flows for bulk CSV execution
+    workflows : "SO,SHHIS,POSH,ONHAND,DFUPRICE"

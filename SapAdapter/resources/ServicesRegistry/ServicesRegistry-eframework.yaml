@@ -1,0 +1,23 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+# EFramework Properties for Services Registry Service
+eframework:
+  applicationId: srs
+  errorReport:
+    enabled: true
+    errorReportPath: ./errorReports
+    title: SRS Error Report
+    htmlTemplatePath: errorReportTemplate.html
+    payload.transaction.size: 2048

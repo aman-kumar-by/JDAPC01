@@ -1,0 +1,56 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+##**** SRS and Versioning configuration properties **************##
+#SRS Versioning Properties
+srs:
+    basePath: "srs/api/v1"
+    connection:
+        timeout: '30000'
+    hostName: "localhost"
+    localModeEnable: "true"
+    localModeFullMessageNames: "BYDM:sapLoadMessage:BYDM 2020.2.0"
+    maxConnection: '-1'
+    port: "9820"
+    protocol:
+        #In case of http, the value should be SRS_HTTP
+        config: "SRS_HTTPS"
+    reconnection:
+        attempts: '2'
+        frequency: '2000'
+    response:
+        bufferSize: '1024'
+        timeout: '30000'
+    service:
+        name: "SAP.GLOBAL"
+        # To enable/disable SRS in SAP Adapter
+        enable : "true"
+    serviceBinding: "sap_service/service-binding.yaml"
+    serviceDefinition: "sap_service/service-definition.yaml"
+    'trace':
+        enable: "false"
+    writeToSRS: 'true'
+# Below properties will be used for VTS configuration. At this moment, this is not functional but is mandatory to be kept from message support's perspective
+vts:
+    connection:
+        timeout: '30000'
+    host: 'localhost'
+    maxConnection: '-1'
+    port: '9841'
+    reconnection:
+        attempts: '2'
+        frequency: '2000'
+    response:
+        bufferSize: '1024'
+        timeout: '300'

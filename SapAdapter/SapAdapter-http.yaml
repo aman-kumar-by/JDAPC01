@@ -1,0 +1,126 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+#****************HTTP(S) EndPoints*******************
+#HTTP EndPoint Configurations
+sap:
+    listener: 
+      #Controls whether api endpoint accepts HTTP or HTTPS
+        #config: "HTTPS_Listener_config"
+        config: "HTTP_Listener_config"
+        flow:
+            initial:
+                state: "started"
+    source:
+      #Source HTTP EndPoint Configuration
+      http:
+        host: "0.0.0.0"
+        port: "8090"
+      #Source HTTPS EndPoint Configuration
+      https:
+        host: "0.0.0.0"
+        port: "8163"
+      connectionIdleTimeout : "30000"
+      frequency: "20000"
+      reconnectionAttempts: "2"
+    #Target requester configuration to send requests from SAP Adapter
+    targetRequester: 
+      #Controls whether target endpoint sends HTTP or HTTPS
+        config: "Target_HTTPS_Request_Config"
+        #config: "Target_HTTP_Request_Config"
+    target:
+        # Target HTTPS EndPoint Configuration
+        https:
+            host: "0.0.0.0"
+            port: "8180"
+        # Target HTTP EndPoint Configuration
+        http:
+            host: "0.0.0.0"
+            port: "8181"
+        path: "/"
+        maxConnection: "-1"
+        connectionTimeout : "30000"
+        responseBufferSize : "1024"
+        responseTimeout: "90000"
+        frequency: "20000"
+        reconnectionAttempts: "2"
+    #HTTPS Configuration to send IDOC requests to SAP System for Inbound Workflows
+    inboundIdoc:
+      http:
+        #Enable HTTP/HTTPS for to send request to SAP - For HTTP : HTTP_Request_configuration_Inbound_IDOC
+        config: "HTTPS_Request_configuration_Inbound_IDOC"
+        host: "0.0.0.0"
+        port: "8002"
+      https:
+        host: "0.0.0.0"
+        port: "8001"
+      path: "/sendIdoc"
+      maxConnection: "-1"
+      connectionTimeout : "30000"
+      responseBufferSize : "1024"
+      responseTimeout: "90000"
+      frequency: "20000"
+      reconnectionAttempts: "2"
+    #HTTPS Configuration to send BAPI requests to SAP System for Inbound Workflows.
+    inboundBapi:
+      http:
+        #Enable HTTP/HTTPS for to send request to SAP - For HTTP : HTTP_Request_configuration_Inbound_BAPI
+        config: "HTTPS_Request_configuration_Inbound_BAPI"
+        host: "0.0.0.0"
+        port: "8004"
+      https:
+        host: "0.0.0.0"
+        port: "8003"
+      path: "/sendBapi"
+      maxConnection: "-1"
+      connectionTimeout : "30000"
+      responseBufferSize : "1024"
+      responseTimeout: "90000"
+      frequency: "20000"
+      reconnectionAttempts: "2"
+    #HTTPS Configuration to send BAPI request to SAP System for SO and SHHIS (net change requests) for Outbound worflows
+    outboundBapi:
+      http:
+        #Enable HTTP/HTTPS for to send request to SAP - For HTTP : HTTP_Request_configuration_Outbound_BAPI
+        config: "HTTPS_Request_configuration_Outbound_BAPI"
+        host: "0.0.0.0"
+        port: "8006"
+      https:
+        host: "0.0.0.0"
+        port: "8005"
+      path: "/sendOutBapi"
+      maxConnection: "-1"
+      connectionTimeout : "30000"
+      responseBufferSize : "1024"
+      responseTimeout: "90000"
+      frequency: "20000"
+      reconnectionAttempts: "2"
+      
+      #HTTPS Configuration to send CSV requests to SAP System for Inbound Workflows
+    inboundCsv:
+      http:
+        #Enable HTTP/HTTPS for to send request to SAP - For HTTP : HTTP_Request_configuration_Inbound_IDOC
+        config: "HTTPS_Request_configuration_Inbound_CSV"
+        host: "0.0.0.0"
+        port: "8008"
+      https:
+        host: "0.0.0.0"
+        port: "8007"
+      path: "/sendCsv"
+      maxConnection: "-1"
+      connectionTimeout : "30000"
+      responseBufferSize : "1024"
+      responseTimeout: "90000"
+      frequency: "20000"
+      reconnectionAttempts: "2"

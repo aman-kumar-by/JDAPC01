@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+/*
+* //==========================================================================
+* //               Copyright 2020, Blue Yonder, Inc.
+* //                         All Rights Reserved
+* //
+* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+* //                         BLUE YONDER, INC.
+* //
+* //
+* //          The copyright notice above does not evidence any actual
+* //               or intended publication of such source code.
+* //
+* //==========================================================================
+*/
+-->
+
+<!-- Code list configuration -->
+
+<uom-code-map-configuration>
+    <uom-code-map name="UOMSupported" bi-directional="true">
+	    	<code key="KMT" value="KMT" />
+	    	<code key="ACR" value="ACR" />
+	    	<code key="BO" value="BO" />
+			<code key="CA" value="CA" />
+	    	<code key="CMQ" value="CMQ" />
+	    	<code key="CMT" value="CMT" />
+	    	<code key="CS" value="CS" />
+	    	<code key="CSE" value="CS" />
+	    	<code key="EA" value="EA" />
+	    	<code key="FOT" value="FOT" />
+	    	<code key="FTK" value="FTK" />
+	    	<code key="FTQ" value="FTQ" />
+	    	<code key="GRM" value="GRM" />
+	    	<code key="GLL" value="GLL" />
+	    	<code key="INH" value="INH" />
+	    	<code key="INQ" value="INQ" />
+	    	<code key="KGM" value="KGM" />
+	    	<code key="KMT" value="KMT" />
+	    	<code key="LTR" value="LTR" />
+	    	<code key="LB" value="LBR" />
+	    	<code key="MTR" value="MTR" />
+	    	<code key="MTK" value="MTK" />
+	    	<code key="MTQ" value="MTQ" />
+	    	<code key="MGM" value="MGM" />
+	    	<code key="SMI" value="SMI" />
+	    	<code key="MMT" value="MMT" />
+	    	<code key="ONZ" value="ONZ" />
+	    	<code key="PK" value="PK" />
+	    	<code key="PF" value="PF" />
+	    	<code key="PT" value="PT" />
+	    	<code key="QT" value="QT" />
+	    	<code key="TNE" value="TNE" />
+			<code key="CT" value="CT" />
+	</uom-code-map>
+    <uom-code-map name="UOMNonSupported" bi-directional="true">
+    		<code key="HLT" value="LTR" />
+    		<code key="TNU" value="LTN" />
+    		<code key="YD" value="YRD" />
+    		<code key='"2' value="INK" />
+    		<code key="KM2" value="KMK" />
+    		<code key="MI2" value="MIK" />
+    		<code key="YD2" value="YDK" />
+    		<code key="YD3" value="YDQ" />
+    </uom-code-map>
+    <time-measurement-code-map name="TimeMeasurementSupported" bi-directional="true">
+	    	<code key="HUR" value="HUR" />
+	    	<code key="MIN" value="MIN" />
+	    	<code key="MON" value="MON" />
+	    	<code key="DAY" value="DAY" />
+			<code key="HR" value="HUR" />
+		    <code key="WK" value="WEE" />
+		    <code key="S" value="SEC" />
+	</time-measurement-code-map>
+    <time-measurement-code-map name="TimeMeasurementNonSupported" bi-directional="true">
+    		<code key="H" value="HUR" />
+    		<code key="HR" value="HUR" />
+    		<code key="WK" value="WEE" />
+    		<code key="D" value="DAY" />
+    		<code key="S" value="SEC" />
+    		<code key="M" value="MON" />
+    		<code key="W" value="WEE" />
+    		<code key="J" value="ANN" />
+    </time-measurement-code-map>
+    <inventory-status-code-map name="InventoryStatusCodeList" bi-directional="true">
+    		<code key="UR" value="AVAILABLE_FOR_SALE" />
+    		<code key="QI" value="INSPECT" />
+    		<code key="RE" value="RETURNED" />
+    		<code key="BL" value="ON_HOLD" />
+    		<code key="TR" value="IN_TRANSIT" />
+    		<code key="RS" value="PUT_ASIDE" />
+    </inventory-status-code-map>
+    <inventory-measure-code-map name="onHandMeasureCodeList" bi-directional="true">
+    		<code key="UR" value="On Hand" />
+    		<code key="QI" value="Total Stock" />
+    		<code key="RE" value="Total Stock" />
+    		<code key="BL" value="Total Stock" />
+    		<code key="TR" value="Total Stock" />
+    		<code key="RS" value="Total Stock" />
+    </inventory-measure-code-map>
+</uom-code-map-configuration>

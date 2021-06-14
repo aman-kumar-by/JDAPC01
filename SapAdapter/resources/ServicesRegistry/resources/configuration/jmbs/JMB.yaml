@@ -1,0 +1,20 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+!jmb-configuration-v1
+name: JMB
+outboundEndpoints:
+- name: SAP.GLOBAL
+  flow:
+    name: setBYDMOutboundMessageFlow

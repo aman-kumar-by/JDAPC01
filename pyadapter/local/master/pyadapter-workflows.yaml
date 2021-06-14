@@ -1,0 +1,123 @@
+workflows:
+  inbound:
+    location:
+      trigger: "inbound_jms"
+      publisher: "catman_api"
+      publisherOptions:
+        upsert: true
+        path: "/ckb-stores/v2/stores"
+        db_parent_prc_key: "3"
+        filter: "?$filter=storeNumber eq %s & $select =dbKey"
+        filterField: "storenumber"
+        message:
+          message_format: "json"
+          message_type: "catman-api-message"
+    item:
+      trigger: "inbound_jms"
+      publisher: "yantrik_api"
+      publisherOptions:
+        upsert: false
+        path: "/kafka-rest-services"
+        message:
+          message_format: "json"
+          message_type: "yantrik-api-message"
+    ZDEBMAS07:
+      trigger: "inbound_jms"
+      publisher: "outbound_jms"
+      publisherOptions:
+        queue_name: "ZDEBMAS07_MESSAGE"
+        message:
+          message_format: "json"
+          message_type: "bydm"
+          message_version: "BYDM 2021.3.0"
+          message_receiver: "SAP.GLOBAL"
+    itemHierarchyLevelMember:
+        publisher: "catman_api"
+    floorplan:
+      publisher: "catman_api"
+      publisherOptions:
+        upsert: true
+        path: "/ckb-floorplans/v2/floorplans"
+        filterStoreNoBasedFetch: "?$filter=value1 eq %s"
+        pathPerFloorplan : "/ckb-floorplans/v2/floorplans/%s"
+        db_parent_prc_key: "???"
+        message:
+          message_format: "json"
+          message_type: "catman-api-message"
+    user:
+      publisher: "catman_api"
+      publisherOptions:
+        path: "/ckb-users/v2/users"
+        db_parent_prc_key: "???"
+        upsert: true
+        message:
+          message_format: "json"
+          message_type: "catman-api-message"
+    userRole:
+      publisher: "catman_api"
+      publisherOptions:
+        upsert: true
+        path: "/ckb-users/v2/roles"
+        db_parent_prc_key: "???"
+        filter: "?$filter=role eq '%s'"
+        filterField: "role"
+        message:
+          message_format: "json"
+          message_type: "catman-api-message"
+    roleGroup:
+      publisher: "catman_api"
+      publisherOptions:
+        path: "/ckb-users/v2/roleGroups"
+        upsert: true
+        db_parent_prc_key: "???"
+        pathPerRoleGroup : "/ckb-users/v2/roleGroups/%s/roles"
+        pathForRoleAssignment : "/ckb-users/v2/roleGroups/%s/roles/assign"
+        message:
+          message_format: "json"
+          message_type: "catman-api-message"
+  outbound:
+    floorplan:
+      trigger: "floorplan_scheduler"
+      publisher: "outbound_jms"
+      triggerOptions:
+        path: "/ckb-floorplans/v2/floorplans"
+        filter: "?$select=dbkey,dbstatus,dBDateEffectiveFrom,Desc1,Desc2&$filter= (dbstatus eq 2) and (flag10 eq 1)&$top=10"
+      publisherOptions:
+        queue_name: "PYCAT_OUTBOUND"
+        message:
+          message_format: "json"
+          message_type: "BYDM"
+          message_version: "BYDM 2020.2.0"
+          message_receiver: "SAP.GLOBAL"
+    planogram:
+      trigger: "planogram_scheduler"
+      publisher: "outbound_jms"
+      triggerOptions:
+        path: "/ckb-planograms/v2/planograms"
+        filter: "?$select=dbkey,dbstatus,dBDateEffectiveFrom,Desc1,Desc2&$filter= (dbstatus eq 2) and (flag10 eq 1)&$top=10"
+      publisherOptions:
+        queue_name: "PYCAT_OUTBOUND"
+        message_type: "BYDM"
+        message_version: "BYDM 2021.3.0"
+        message_receiver: "SAP.GLOBAL"
+    planogram-product:
+      triggerOptions:
+        path: "/ckb-planograms/v2/planograms/%s/products"
+        filter: "?$select=id,Desc3&$top=1"
+    planogram-performance:
+      triggerOptions:
+        path: "/ckb-planograms/v2/planograms/%s/performance"
+        filter: "?$select=replenishmentMax,replenishmentMin,dbKey,dbParentProductKey&$top=1"
+    planogram-fixtures:
+      triggerOptions:
+        path: "/ckb-planograms/v2/planograms/%s/fixtures"
+        filter: "?$select=dbKey,cubic,locationID&$top=1"
+  acknowledgement:
+    applicationReceiptAcknowledgement:
+      publisher: "outbound_jms"
+      publisherOptions:
+        queue_name: "ACK_MESSAGE"
+        message:
+          message_type: "BYDM"
+          message_version: "BYDM 2021.3.0"
+          message_receiver: "ACK.GLOBAL"

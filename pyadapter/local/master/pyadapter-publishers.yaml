@@ -1,0 +1,42 @@
+publishers:
+  catman_api:
+    publisher_type: "api"
+    type: "api"
+    protocol: "http"
+    disable_ssl_cert_verification: "true"
+    host: "md1npdvjdapc01"
+    port : "7500"
+    authorisation:
+      enabled: true
+      port : "7600"
+      resourcePath : "/IAM/connect/token"
+      username : 'ckbadmin'
+      client_id : 'ResOwnerClient'
+      grantType : 'password'
+      scope : 'access'
+  yantrik_api:
+    publisher_type: "api"
+    type: "api"
+    protocol: "http"
+    disable_ssl_cert_verification: "true"
+    host: "35.192.11.142"
+    port: "8094"
+    authorisation:
+      enabled: false
+      port: "7600"
+      resourcePath: "/IAM/connect/token"
+      username: 'ckbadmin'
+      client_id: 'ResOwnerClient'
+      grantType: 'password'
+      scope: 'access'
+  catman_db:
+    server: '127.0.0.1'
+    database: 'ckb'
+    username: 'sa'
+  outbound_jms:
+    type: "jms"
+    options:
+      username: "admin"
+      host: "localhost"
+      port: "61613"
+      defaultQueueName: "PYCATOUTBOUND"

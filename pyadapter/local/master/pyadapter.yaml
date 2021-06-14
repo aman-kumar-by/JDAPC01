@@ -1,0 +1,57 @@
+store:
+  enabled: true
+  protocol: "https"
+  disable_ssl_cert_verification: "true"
+  host: azenpdconap003
+  port: 9830
+  basePath: "/messagestore/api/v3"
+  serviceName: CATMAN-GLOBAL
+  serviceType: ADAPTER
+  serviceInstance: CATMAN-CLUSTER
+  serviceHost: localhost
+  serviceVersion: 2021.1.0
+  sender: SAP.GLOBAL
+  endpointType: Receiving
+  endpointName: CATMAN.GLOBAL
+  # messageCategory: Request
+  # storeStatus: Prepared
+  clientId: "ResOwnerClient"
+  clientSecret: xx
+  https:
+    tls:
+      keyStore:
+        path: "keystore.jks"
+      trustStore:
+        path: "truststore.jks"
+  #message store calls Until-successful retry properties
+  retry:
+    limit: "5" ## Max retry count
+    delay: "10000" ## In Milliseconds
+
+archiver:
+  path: "log/archived"
+
+bydm:
+  validation:
+    enabled: false
+canModel:
+  useLocalMode: false
+  useCaching: false
+  localCanModelPath: "local-canmodel"
+  remote:
+    protocol: "http"
+    host: "localhost"
+    port: "9861"
+    pathFormat: "/canmodel/api/v1/canModels/%s/%s"
+api:
+  # Retry delay in seconds
+  retryDelay: 1
+  # Retry count : Number of retries to be attempted
+  retryCount: 3
+  # api timeout : Time in seconds to wait for response from an api call
+  timeout : 2
+
+ack:
+  notification:
+    error:
+      enabled: "false"

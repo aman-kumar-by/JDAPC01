@@ -1,0 +1,47 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+# Kafka: Configuration Details
+sap:
+  kafka:
+    enabled: "false"
+    topicName: "KAFKA-TOPIC"
+    deliveryTimeout: "3000"
+    server: "localhost:9092"
+    #port: "8090"
+    reconnection:
+      attempts: "3"
+      frequency: "5000"
+    batch:
+      size: "16"
+    buffer:
+      size: "1000"
+    connection:
+      idleTime: "540"
+    max:
+      blockTime: "60"
+      flightReq: "5"
+      reqSize: "1"
+    retry:
+      amount: "1"
+    default:
+      receive:
+        bufferSize: "64"
+      send:
+        bufferSize: "128"
+      request:
+        timeout: "30"
+    directory:
+      path: "\\"
+    

@@ -1,0 +1,69 @@
+Mappings:
+- modelMapping:
+    sourceModel: outboundPlanogram
+    targetModel: BAPISHELFHDIMP
+
+    #(Repeat BAPI segments for each occurrence)
+    segmentMapping:
+    - targetSegment: BAPISHELFHDIMP
+      fieldMapping:
+      - sourceField: dBStatus
+        targetField: LIST_CHECK
+      - sourceField: dBDateTimeEffectiveFrom
+        targetField: LIST_ST_FR
+      segmentListMapping:
+      - sourceSegment: planogramFixture
+        targetSegment: bapi_fix_asgmt
+        fieldMapping:
+        - sourceField: avpList.value
+          targetField: LAYMOD_MOD
+          Condition:
+            options:
+            - eq:
+                field: avpList.name
+                value: "DESC1"
+        - sourceField: avpList.value
+          targetField: LAYMOD_VER
+          Condition:
+            options:
+            - eq:
+                field: avpList.name
+                value: "DESC2"
+
+        - sourceField: dBKey
+          targetField: FIXTURE
+        - sourceField: cubicSpace
+          targetField: FIX_CAPACITY
+        - sourceField: locationIdentification
+          targetField: FIXTURE_SEQUENCE
+
+          #(Repeat BAPI segments for each occurrence)
+
+      - sourceSegment: planogramPerformance
+        targetSegment: bapishelfimp
+        fieldMapping:
+        - sourceField: maximumReplenishmentUnits
+          targetField: SHELF_QUANTITY_MAXNBSP
+        - sourceField: maximumReplenishmentUnits
+          targetField: PRES_QNT
+      - sourceSegment: planogramProduct
+        targetSegment: bapishelfimp
+        fieldMapping:
+          - sourceField: productIdentification
+            targetField: MATERIAL
+        segmentListMapping:
+        - sourceSegment: avpList
+          targetSegment: UNIT
+          fieldMapping:
+          - sourceField: value
+            targetField: UNIT
+            Condition:
+              options:
+              - eq:
+                  field: name
+                  value: "DESC3"
+
+
+
+
+

@@ -1,0 +1,37 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+!service-definition-v1
+name: LCT-2020.1.0.0
+description: LCT adapter - request details wrt SAP adapter
+requests:
+- 'GS1:BOM:GS1_JDA 2020.1.0'
+- 'GS1:BOMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:CUSTORDIDOC:GS1_JDA 2019.1.1'
+- 'GS1:DELIVERY:GS1_JDA 2020.1.0'
+- 'GS1:ITEM:GS1_JDA 2020.1.0'
+- 'GS1:ITEMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:IBATCH:GS1_JDA 2020.1.0'
+- 'GS1:LOC:GS1_JDA 2020.1.0'
+- 'GS1:CUSMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:VENMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:TPSLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:CUSMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:VENMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:POIDOC:GS1_JDA 2020.1.0'
+- 'GS1:RECEIVINGADVICE:GS1_JDA 2020.1.0'
+- 'GS1:RELATION:GS1_JDA 2020.1.0'
+- 'GS1:ONHAND:GS1_JDA 2019.1.1'
+- 'GS1:SKUPARAM:GS1_JDA 2020.1.0'
+- 'GS1:SKUPARAMIDOC:GS1_JDA 2020.1.0'

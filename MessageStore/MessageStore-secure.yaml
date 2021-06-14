@@ -1,0 +1,25 @@
+MSDatabase:
+  user-secure: "AMAN_MS"
+  password-secure: "AMAN_MS"
+
+
+server:
+
+  https:
+    tls:
+      keyStore:
+        password-secure: "changeme"
+        key:
+          password-secure: "changeme"
+      trustStore:
+        password-secure: "changeme"
+        
+  request:
+    replay:
+      tls:
+        keyStore:
+          password-secure: "changeme"
+          key:
+            password-secure: "changeme"
+        trustStore:  
+          password-secure: "changeme"    

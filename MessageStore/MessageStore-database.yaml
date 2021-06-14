@@ -1,0 +1,19 @@
+# Properties relating to Database
+
+MSDatabase:
+  url: "jdbc:oracle:thin:@in2npdlnxdb10:1521:if19ca"
+  driverClassName: "oracle.jdbc.driver.OracleDriver"
+   
+        
+  connection:
+    maxPoolSize: "100"
+    minPoolSize: "10"
+    preparedStatementCacheSize: "10"
+    maxWait: "10"
+    acquireIncrement: "2"
+
+queryTimeout: "500"
+
+#replay.inMemoryObjects is defaulted to 10000. 
+#override this properties if need to replay very large messages. 
+replay.inMemoryObjects: 10000

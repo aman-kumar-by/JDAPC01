@@ -1,0 +1,40 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+
+# Properties for Services Registry Service
+srs:
+  rootDirectory: configuration
+
+server:
+  
+  listener: 
+  #Controls whether api endpoint accepts HTTP or HTTPS
+    config: "HTTPS_Listener_config"
+    #config: "HTTP_Listener_config"
+    
+  https:
+    host: "0.0.0.0"
+    port: "9820"
+    tls:
+      context: "TLS_Context"
+      #context: "TLS_Context_with_Trust"
+      keyStore:
+        path: "https/keystore.jks"
+      trustStore:
+        path: "https/truststore.jks"
+        
+  http:
+    host: "0.0.0.0"
+    port: "9821"

@@ -1,0 +1,46 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+#******************Message Store Properties*******************
+#This message store confiuration will be used for SAP Adapter entities
+sap:    
+    ms:
+        basepath: "/messagestore/api/v3"
+        connection:
+            timeout: '30000'
+        http:
+            #Enable HTTP/HTTPS for MS here
+            config: "MS_HTTP_Request_Configuration"
+            #MS HTTP configuration
+            host: "0.0.0.0"
+            port: "9831"
+        #MS HTTPS configuration
+        https:
+            host: "0.0.0.0"
+            port: "9830"
+        maxConnection: '-1'
+        reconnection:
+            attempts: '2'
+            frequency: '2000'
+        response:
+            bufferSize: '1024'
+            #To adjust HTTP response timeout in message store
+            timeout: '9000'
+        # To enable/disable message store component in SAP Adapter
+        service:
+            enable: "false"
+        serviceinstance: "SAP-CLUSTER"
+        servicename: "SAP-GLOBAL"
+        servicetype: "SAP"
+        serviceversion: "2020.3.0"

@@ -1,0 +1,45 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+#Bulk notification: Configuration Details
+#This property will be used to enable/disable bulk notification framework component in SAP Adapter
+sap:
+    bulk:
+        notification:
+            enable: "false"
+bulk:
+    callback:
+        azure:
+            connection:
+                string: "CHANGEME"
+        host: "in2npdvlnx40"
+        path: "CHANGEME"
+        port: "22"
+        protocol: "FILE"
+    csv:
+        read:
+            batch:
+                size: "100"
+        schema:
+            location: "CHANGEME"
+        store:
+            path: "/sap_FileShare/Bulk"
+            type: "SFTP"
+    persistent:
+      store:
+        path: "/sap_FileShare/Bulk"
+        type: "Local File Store"
+    receiver:
+        maxRetry: '5'
+        retryMillSec: '60000'

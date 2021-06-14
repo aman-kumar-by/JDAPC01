@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+/*
+* //==========================================================================
+* //               Copyright 2020, Blue Yonder, Inc.
+* //                         All Rights Reserved
+* //
+* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+* //                         BLUE YONDER, INC.
+* //
+* //
+* //          The copyright notice above does not evidence any actual
+* //               or intended publication of such source code.
+* //
+* //==========================================================================
+*/
+-->
+
+<entity-map-configuration>
+<entity-map entityName="item" bi-directional="true">
+    <canModelConfig name="itemCsv" nativeType="CSV" direction="inbound">
+        <canModelAttribute nativeIn="CUSTOM_MAT" canModelAvpList="senderDocumentIdentification" default="01011900" canModelMsgAttribute="item/itemdetails/newCATMANField" canModelRepeat="true"/>
+        <canModelAttribute nativeIn="CUSTOM_MATGRP" canModelAvpList="customMaterialGroup"/>
+        <canModelAttribute nativeIn="CUSTOM_NAME1" canModelAvpList="customName"/>
+        <canModelAttribute nativeIn="CUSTOM_WERKS" canModelAvpList="customWorkStation"/>
+    </canModelConfig>         
+    <canModelConfig name="itemIdoc" nativeType="IDOC" nativeMessageType="MATMAS05">                                  
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/A2" canModelAvpList="A2" default="01011900" canModelMsgAttribute="item/itemdetails/newCATMANField" canMsgRepeat="true"/>
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/LASTNAME" canModelAvpList="L_NAME"/>
+    </canModelConfig>
+</entity-map>
+
+<entity-map entityName="uom" bi-directional="true">
+    <canModelConfig name="uomCsv" nativeType="CSV" direction="inbound">
+        <canModelAttribute nativeIn="CUSTOM_MAT" canModelAvpList="senderDocumentIdentification" default="01011900" />
+        <canModelAttribute nativeIn="CUSTOM_MATGRP" canModelAvpList="customMaterialGroup"/>
+        <canModelAttribute nativeIn="CUSTOM_NAME1" canModelAvpList="customName"/>
+        <canModelAttribute nativeIn="CUSTOM_WERKS" canModelAvpList="customWorkStation"/>
+    </canModelConfig>           
+    <canModelConfig name="uomIdoc" nativeType="IDOC" nativeMessageType="MATMAS05">                                  
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/A2" canModelAvpList="A2" default="01011900" />
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/LASTNAME" canModelAvpList="L_NAME"/>
+    </canModelConfig>
+</entity-map>
+
+<entity-map entityName="cal" bi-directional="true">
+    <canModelConfig name="calCsv" nativeType="CSV" direction="inbound">
+        <canModelAttribute nativeIn="CUSTOM_MAT" canModelAvpList="senderDocumentIdentification" default="01011900" />
+        <canModelAttribute nativeIn="CUSTOM_MATGRP" canModelAvpList="customMaterialGroup"/>
+        <canModelAttribute nativeIn="CUSTOM_NAME1" canModelAvpList="customName"/>
+        <canModelAttribute nativeIn="CUSTOM_WERKS" canModelAvpList="customWorkStation"/>
+    </canModelConfig>           
+    <canModelConfig name="calIdoc" nativeType="IDOC" nativeMessageType="MATMAS05">                                  
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/A2" canModelAvpList="A2" default="01011900" />
+        <canModelAttribute nativeIn="idoc/edi/mara/Z-DIAGEO/LASTNAME" canModelAvpList="L_NAME"/>
+    </canModelConfig>
+</entity-map>
+
+</entity-map-configuration>

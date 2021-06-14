@@ -1,0 +1,35 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+#This property will be used to trigger execution of old archival files removal code.
+archivalDeletion:
+    # To enable/disable utility code for deleting old archival files
+    enable: "false"
+    # Seconds Minutes Hours Day_of_month Month Day_of_week
+    cronJob: "0 40 11 * * ?"
+    #Before these number of days, it will clear the archival files
+    days : "10"
+sap:
+    salesorder:
+        #To enable salesorder net change flow which will send request to SAP system for sending sales order data for particular date range based on configuration
+        enableNetChangeProcess: "true"
+        cron:
+            # Seconds Minutes Hours Day_of_month Month Day_of_week
+            expression: "0 40 11 * * ?"
+    shipment:
+        #To enable shipment history net change flow which will send request to SAP system for sending shipment history data for particular date range based on configuration
+        enableNetChangeProcess: "true"
+        cron:
+            # Seconds Minutes Hours Day_of_month Month Day_of_week
+            expression: "0 21 17 * * ?"

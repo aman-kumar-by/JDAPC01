@@ -1,0 +1,19 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+# Auto discovery needs to be configured through mulesoft API manager if oAuth needs to be enabled. 
+# API Id needed to connect to API Manager.
+
+api:
+  id: "12345678"

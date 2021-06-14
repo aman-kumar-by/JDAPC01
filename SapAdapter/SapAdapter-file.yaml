@@ -1,0 +1,31 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+##### File Configuration #####
+
+file:
+  path: "\\sap_FileShare\\Input\\"
+  outputPath: "\\sap_FileShare\\Output\\"
+  
+  readMaxRetries: "3"
+  readMaxRetriesFrequency : "60000" #MilliSeconds
+
+##### File Configuration #####
+
+sap:
+    #Target EndPoint Configuration
+    # Mandatory to pass this field, if need to send Canonical messages to FILE.
+    file:
+        output:
+            path: "/sap_FileShare/CanMessage"

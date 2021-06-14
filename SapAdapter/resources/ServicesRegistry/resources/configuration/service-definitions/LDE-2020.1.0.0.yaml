@@ -1,0 +1,40 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+!service-definition-v1
+name: LDE-2020.1.0.0
+description: LDE adapter - request details wrt SAP adapter
+requests:
+- 'GS1:DMDUNIT:GS1_JDA 2020.1.0'
+- 'GS1:DMDUNITIDOC:GS1_JDA 2020.1.0'
+- 'GS1:PRODHIER:GS1_JDA 2019.1.1'
+- 'GS1:EXCH:GS1_JDA 2020.1.0'
+- 'GS1:EXCHIDOC:GS1_JDA 2020.1.0'
+- 'GS1:ONHAND:GS1_JDA 2019.1.1'
+- 'GS1:ITEM:GS1_JDA 2020.1.0'
+- 'GS1:ITEMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:LOC:GS1_JDA 2020.1.0'
+- 'GS1:CUSMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:VENMASLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:TPSLOCIDOC:GS1_JDA 2020.1.0'
+- 'GS1:MGEVENT:GS1_JDA 2019.1.1'
+- 'GS1:OPNHR:GS1_JDA 2020.1.0'
+- 'GS1:CUSMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:VENMASPTYIDOC:GS1_JDA 2019.1.1'
+- 'GS1:POSH:GS1_JDA 2019.1.1'
+- 'GS1:PROMO:GS1_JDA 2019.1.1'
+- 'GS1:RELATION:GS1_JDA 2020.1.0'
+- 'GS1:SKUPARAM:GS1_JDA 2020.1.0'
+- 'GS1:SKUPARAMIDOC:GS1_JDA 2020.1.0'
+- 'GS1:UOM:GS1_JDA 2019.1.1'

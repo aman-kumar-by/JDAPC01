@@ -1,0 +1,45 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+
+https:
+    key:
+        password-secure: "changeme"
+    keyStore:
+        password-secure: "changeme"
+    trustStore:
+        password-secure: "changeme"
+mbJmsComponent:
+    queue:
+        user: 'admin'
+        password-secure: "admin"
+sap:
+    ms:
+        storeclientid: "MuleClientId"
+        storeclientsecret-secure: "MuleClientSecret"
+sapAdapter:
+    queue:
+        user: 'admin'
+        password-secure: "admin"
+srs:
+    clientId: "sap"
+    clientSecret-secure: "sap"
+    https:
+        tls:
+            trustStore:
+                password-secure: "changeme"
+bulk:
+    callback:
+        username: "changeme"
+        password-secure: "changeme"

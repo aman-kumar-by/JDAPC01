@@ -1,0 +1,37 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+!srs-configuration-v1
+receiverMappings:
+- receiver: 'SAP.GLOBAL'
+  service: 'SAP.GLOBAL'
+- receiver: 'SCPO.GLOBAL'
+  service: 'SCPO.GLOBAL'
+- receiver: 'TMS.GLOBAL'
+  service: 'TMS.GLOBAL'
+- receiver: 'LCT.GLOBAL'
+  service: 'LCT.GLOBAL'
+- receiver: 'LSR.GLOBAL'
+  service: 'LSR.GLOBAL'
+- receiver: 'LDE.GLOBAL'
+  service: 'LDE.GLOBAL'
+jmbs:
+- JMB
+services:
+- SAP.GLOBAL
+- SCPO.GLOBAL
+- TMS.GLOBAL
+- LCT.GLOBAL
+- LSR.GLOBAL
+- LDE.GLOBAL

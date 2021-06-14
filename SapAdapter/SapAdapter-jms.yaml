@@ -1,0 +1,114 @@
+#/*
+#* //==========================================================================
+#* //               Copyright 2020, Blue Yonder, Inc.
+#* //                         All Rights Reserved
+#* //
+#* //              THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#* //                         BLUE YONDER, INC.
+#* //
+#* //
+#* //          The copyright notice above does not evidence any actual
+#* //               or intended publication of such source code.
+#* //
+#* //==========================================================================
+#*/
+# Message Broker: Configuration Details
+mbJmsComponent:
+    queue:
+        #brokerURL: "tcp://md1npdvhana01:61616"
+        brokerURL: "tcp://localhost:61616"
+        concurrentConsumers: "3"
+        initialRedeliveryDelay: "20000"
+        maxConnections: "5"
+        maxRedelivery: "1"
+        redeliveryDelay: "20000"
+        sessionCacheSize: "100"
+        pool:
+            idleSeconds: "60"
+            maxSize: "32"
+            minSize: "4"
+        #To enable/disable consumption of message by primary node from the queue, when running in a cluster. The other nodes will not process the queue.
+        #Currently this property is not being used, as mule does not allow to pass primaryNodeOnly as a property. It will be in effect once mule resolves this issue.
+        primaryNodeOnlyFlag: "false"
+    reconnection:
+        attempts: "2"
+        frequency: "2000"
+    pool:
+        idleSeconds: '60'
+        maxSize: '32'
+        minSize: '4'
+# Internal JMS Provider used by SAP Adapter for processing of bulk data
+sapAdapter:
+    queue:
+        #brokerURL: "tcp://md1npdvhana01:61616"
+        brokerURL: "tcp://localhost:61616"
+        concurrentConsumers: "3"
+        initialRedeliveryDelay: "20000"
+        maxConnections: "5"
+        maxRedelivery: "1"
+        redeliveryDelay: "20000"
+        sessionCacheSize: "100"
+        pool:
+            idleSeconds: '60'
+            maxSize: '32'
+            minSize: '4'
+        reconnection:
+            attempts: '2'
+            frequency: '2000'
+        #To enable/disable consumption of message by primary node from the queue, when running in a cluster. The other nodes will not process the queue.
+        #Currently this property is not being used, as mule does not allow to pass primaryNodeOnly as a property. It will be in effect once mule resolves this issue.
+        primaryNodeOnlyFlag: "false"
+#JMS EndPoint Configuration
+sap:
+    jms:
+        endpoint:
+            initialState: "started"
+    source:
+        jms:
+            consumers: "1"
+            persistent:
+                enable: "true"
+            queue: "jmsSourceQueue"
+    target:
+        connection:
+            timeout: '30000'
+        maxConnection: '-1'
+        reconnection:
+            attempts: '2'
+            frequency: '2000'
+        response:
+            bufferSize: '1024'
+            timeout: '300'
+    notification:
+        metadata:
+            queue: "bulk-notification-queue"
+            #To adjust number of consumers for bulk-notification-queue
+            numberOfConsumers : "1"
+        # Notification Queue - SAP sends an IDOC notification when SAP creates a CSV file
+        reply:
+            queue: "notification-reply-queue"
+    # JMS Endpoint type - queue - For SAP CUSTOMER (DEBMAS07 - Customer) Object - for both Location and Party workflows
+    customer:
+        idoc:
+            metadata:
+                queue: "CUSTOMER-QUEUE"
+    # JMS Endpoint type - queue - For SAP VENDOR (CREMAS05 - Vendor) Object - for both Location and Party workflows
+    vendor:
+        idoc:
+            metadata:
+                queue: "VENDOR-QUEUE"
+    # JMS Endpoint type - queue - For SAP MATMAS05 Object 
+    idoc:
+        metadata:
+            queue: "MATMAS-QUEUE"
+jms:
+    # Queue names for sending and receiving of messages from Message broker
+    # Outbound (SAPAdapter to MB)
+    queue:
+        mb:
+            # Inbound (MB to SAPAdapter)
+            in: "MB-SAP"
+            # Outbound (SAPAdapter to MB)
+            out: "PYCAT_INBOUND"
+            # SAP Acknowledgement queue (SAPAdapter to Acknowledgement Queue)
+            ack: "SAP-ACK"
