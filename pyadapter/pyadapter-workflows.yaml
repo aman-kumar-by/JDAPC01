@@ -12,7 +12,7 @@ workflows:
         message:
           message_format: "json"
           message_type: "catman-api-message"
-   item:
+    item:
       trigger: "inbound_jms"
       publisher: "catman_api"
       publisherOptions:
@@ -23,7 +23,7 @@ workflows:
         filterField: "id"
         message:
           message_format: "json"
-          message_type: "non-BYDM"
+          message_type: "catman-api-message"
     itemHierarchyLevelMember:
         publisher: "catman_api"
     floorplan:
