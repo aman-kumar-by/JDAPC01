@@ -24,7 +24,7 @@ workflows:
         #filter: "?$filter=ID eq '%s'&$select =dbKey"
         #filterField: "id"
         message:
-          message_format: "json"
+          message_format: "xml"
           message_type: "catman-api-message"
     itemHierarchyLevelMember:
         publisher: "catman_api"
