@@ -29,7 +29,7 @@ workflows:
 #       publisher: "yantrik_api"
 #       publisherOptions:
 #         upsert: false
-#         path: "/kafka-rest-services"
+#         path: "/product-services/product"
 #         message:
 #           message_format: "json"
 #           message_type: "non-bydm"
