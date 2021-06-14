@@ -7,7 +7,7 @@ Mappings:
       - targetField: enabled
         default: true
       - targetField: orgId
-        default: "TBC"
+        default: "ORG001"
       - targetField: productCategory
         default: "DEFAULT"
       - sourceField: classifications.itemFamilyGroup
