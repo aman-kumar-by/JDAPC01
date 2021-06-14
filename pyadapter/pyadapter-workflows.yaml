@@ -24,16 +24,16 @@ workflows:
         message:
           message_format: "json"
           message_type: "catman-api-message"
-#    ZDEBMAS07:
-#      trigger: "inbound_jms"
-#      publisher: "outbound_jms"
-#      publisherOptions:
-#        queue_name: "ZDEBMAS07_MESSAGE"
-#        message:
-#          message_format: "json"
-#          message_type: "bydm"
-#          message_version: "BYDM 2021.3.0"
-#          message_receiver: "SAP.GLOBAL"
+    ZDEBMAS07:
+      trigger: "inbound_jms"
+      publisher: "outbound_jms"
+      publisherOptions:
+        queue_name: "ZDEBMAS07_MESSAGE"
+        message:
+          message_format: "json"
+          message_type: "bydm"
+          message_version: "BYDM 2021.3.0"
+          message_receiver: "SAP.GLOBAL"
     itemHierarchyLevelMember:
         publisher: "catman_api"
     floorplan:
