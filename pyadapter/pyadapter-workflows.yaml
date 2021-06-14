@@ -14,13 +14,15 @@ workflows:
           message_type: "catman-api-message"
     item:
       trigger: "inbound_jms"
-      publisher: "catman_api"
+      publisher: "outbound_jms"
       publisherOptions:
-        upsert: true
-        path: "/ckb-products/v2/products"
-        db_parent_prc_key: "1"
-        filter: "?$filter=ID eq '%s'&$select =dbKey"
-        filterField: "id"
+        queue_name: "ACK_MESSAGE"
+        #upsert: true
+        #path: "/ckb-products/v2/products"
+        #path: "/product-services/product"
+        #db_parent_prc_key: "1"
+        #filter: "?$filter=ID eq '%s'&$select =dbKey"
+        #filterField: "id"
         message:
           message_format: "json"
           message_type: "catman-api-message"
