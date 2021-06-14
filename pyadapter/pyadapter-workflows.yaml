@@ -14,22 +14,22 @@ workflows:
           message_type: "catman-api-message"
     item:
       trigger: "inbound_jms"
-#       publisher: "catman_api"
+       publisher: "catman_api"
+       publisherOptions:
+         upsert: true
+         path: "/ckb-products/v2/products"
+         db_parent_prc_key: "1"
+         filter: "?$filter=ID eq '%s'&$select =dbKey"
+         filterField: "id"
+         message:
+           message_format: "json"
+           message_type: "non-bydm"
+#       publisher: "outbound_jms"
 #       publisherOptions:
-#         upsert: true
-#         path: "/ckb-products/v2/products"
-#         db_parent_prc_key: "1"
-#         filter: "?$filter=ID eq '%s'&$select =dbKey"
-#         filterField: "id"
+#         queue_name: "ITEM_MESSAGE_OUT"
 #         message:
 #           message_format: "json"
 #           message_type: "non-bydm"
-      publisher: "outbound_jms"
-      publisherOptions:
-        queue_name: "ITEM_MESSAGE_OUT"
-        message:
-          message_format: "xml"
-          message_type: "non-bydm"
           
       
       # publisher options for yantrik api
@@ -40,16 +40,16 @@ workflows:
         #message:
           #message_format: "json"
           #message_type: "yantrik-api-message"
-    #ZDEBMAS07:
-      #trigger: "inbound_jms"
-      #publisher: "outbound_jms"
-      #publisherOptions:
-        #queue_name: "ZDEBMAS07_MESSAGE"
-        #message:
-          #message_format: "json"
-          #message_type: "bydm"
-          #message_version: "BYDM 2021.3.0"
-          #message_receiver: "SAP.GLOBAL"
+    ZDEBMAS07:
+      trigger: "inbound_jms"
+      publisher: "outbound_jms"
+      publisherOptions:
+        queue_name: "ZDEBMAS07_MESSAGE"
+        message:
+          message_format: "json"
+          message_type: "bydm"
+          message_version: "BYDM 2021.3.0"
+          message_receiver: "SAP.GLOBAL"
     itemHierarchyLevelMember:
         publisher: "catman_api"
     floorplan:
