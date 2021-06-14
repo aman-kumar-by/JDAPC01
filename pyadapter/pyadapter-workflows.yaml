@@ -14,26 +14,23 @@ workflows:
           message_type: "catman-api-message"
     item:
       trigger: "inbound_jms"
-      publisher: "catman_api"
+#       publisher: "catman_api"
+#       publisherOptions:
+#         upsert: true
+#         path: "/ckb-products/v2/products"
+#         db_parent_prc_key: "1"
+#         filter: "?$filter=ID eq '%s'&$select =dbKey"
+#         filterField: "id"
+#         message:
+#           message_format: "json"
+#           message_type: "non-bydm"
+      publisher: "outbound_jms"
       publisherOptions:
-        upsert: true
-        path: "/ckb-products/v2/products"
-        db_parent_prc_key: "1"
-        filter: "?$filter=ID eq '%s'&$select =dbKey"
-        filterField: "id"
+        queue_name: "ITEM_MESSAGE_OUT"
         message:
           message_format: "json"
           message_type: "non-bydm"
-      
-      
-      #publisher options for outbound jms
-      #publisher: "outbound_jms"
-      #publisherOptions:
-        #queue_name: "ACK_MESSAGE"
-        #message:
-          #message_format: "json"
-          #message_type: "catman-api-message"
-          #message_receiver: "CATMAN.GLOBAL"
+          
       
       # publisher options for yantrik api
       #publisher: "yantrik_api"
