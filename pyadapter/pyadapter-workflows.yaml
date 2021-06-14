@@ -12,15 +12,18 @@ workflows:
         message:
           message_format: "json"
           message_type: "catman-api-message"
-    item:
+   item:
       trigger: "inbound_jms"
-      publisher: "yantrik_api"
+      publisher: "catman_api"
       publisherOptions:
-        upsert: false
-        path: "/product-services/product"
+        upsert: true
+        path: "/ckb-products/v2/products"
+        db_parent_prc_key: "1"
+        filter: "?$filter=ID eq '%s'&$select =dbKey"
+        filterField: "id"
         message:
           message_format: "json"
-          message_type: "non-bydm"
+          message_type: "non-BYDM"
     itemHierarchyLevelMember:
         publisher: "catman_api"
     floorplan:
