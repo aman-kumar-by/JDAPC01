@@ -18,7 +18,7 @@ workflows:
       publisherOptions:
         queue_name: "ITEM_QUEUE"
         message:
-          message_format: "json"
+          message_format: "xml"
           message_type: "catman-api-message"
 #     item:
 #       trigger: "inbound_jms"
