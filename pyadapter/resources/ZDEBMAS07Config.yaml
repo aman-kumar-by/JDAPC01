@@ -1,0 +1,60 @@
+---
+Mappings:
+-  modelMapping:
+      sourceModel: ZDEBMAS07
+      targetModel: location
+      fieldMapping:
+      - targetField: documentActionCode
+        default: "CHANGE_BY_REFRESH"
+      - default: "DELETE"
+        targetField: documentActionCode
+        condition:
+          options:
+          - eq:
+              field: IDOC.E1KNA1M.LOEVM
+              value: "X"
+      - default: "ADD"
+        targetField: documentActionCode
+        condition:
+          options:
+          - eq:
+              field: IDOC.E1KNA1M.MSGFN
+              value: "009"
+      - sourceField: IDOC.EDI_DC40.DOCNUM
+        targetField: senderDocumentId
+      - sourceField: IDOC.E1KNA1M.KUNNR
+        targetField: locationId
+      segmentMapping:
+      - targetSegment: basicLocation
+        fieldMapping:
+        - targetField: locationName
+          sourceField: IDOC.E1KNA1M.NAME1
+        segmentListMapping:
+        - targetSegment: address
+          fieldMapping:
+          - targetField: streetAddressOne
+            sourceField: IDOC.E1KNA1M.ORT01
+          - targetField: city
+            sourceField: IDOC.E1KNA1M.PSTLZ
+          - targetField: postalCode
+            sourceField: IDOC.E1KNA1M.LAND1
+          - targetField: countryCode
+            sourceField: IDOC.E1KNA1M.TELF1
+        segmentMapping:
+        - targetSegment: contact
+          fieldMapping:
+          - targetField: communicationChannel
+            sourceField: IDOC.E1KNA1M.E1KNVVM.VKORG
+        - targetSegment: status
+          fieldMapping:
+          - targetField: effectiveFromDate
+            sourceField: IDOC.E1KNA1M.E1KNB1M.E1KNB5M.MADAT
+          - targetField: effectiveUpToDate
+            sourceField: IDOC.E1KNA1M.E1KNB1M.E1KNB5M.GMVDT
+      segmentListMapping:
+      - targetSegment: avpList
+        fieldMapping:
+        - targetField: name
+          default: "STORE_SIZE"
+        - targetField: value
+          sourceField: IDOC.E1KNA1M.Z1ZAKNA1.ZZ_STORE_SIZE
