@@ -14,23 +14,16 @@ workflows:
           message_type: "catman-api-message"
     item:
       trigger: "inbound_jms"
-      publisher: "yantrik_api"
+      publisher: "catman_api"
       publisherOptions:
-        upsert: false
-        path: "/kafka-rest-services"
+        upsert: true
+        path: "/ckb-products/v2/products"
+        db_parent_prc_key: "1"
+        filter: "?$filter=ID eq '%s'&$select =dbKey"
+        filterField: "id"
         message:
           message_format: "json"
-          message_type: "yantrik-api-message"
-    ZDEBMAS07:
-      trigger: "inbound_jms"
-      publisher: "outbound_jms"
-      publisherOptions:
-        queue_name: "ZDEBMAS07_MESSAGE"
-        message:
-          message_format: "json"
-          message_type: "bydm"
-          message_version: "BYDM 2021.3.0"
-          message_receiver: "SAP.GLOBAL"
+          message_type: "non-bydm"
     itemHierarchyLevelMember:
         publisher: "catman_api"
     floorplan:
