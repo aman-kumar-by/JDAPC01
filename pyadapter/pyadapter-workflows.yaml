@@ -16,7 +16,7 @@ workflows:
       trigger: "inbound_jms"
       publisher: "outbound_jms"
       publisherOptions:
-        queue_name: "ACK_MESSAGE"
+        queue_name: "ITEM_MESSAGE"
         #upsert: true
         #path: "/ckb-products/v2/products"
         #path: "/product-services/product"
