@@ -18,7 +18,7 @@ workflows:
       publisherOptions:
         queue_name: "ITEM_MESSAGE"
         message:
-          message_format: "json"
+          message_format: "xml"
           message_type: "non-bydm"
     itemHierarchyLevelMember:
         publisher: "catman_api"
