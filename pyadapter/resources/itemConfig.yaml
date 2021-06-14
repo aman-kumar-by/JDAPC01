@@ -4,62 +4,63 @@ Mappings:
     sourceModel: item
     targetModel: product
     fieldMapping:
-      - targetField: enabled
-        default: true
-      - targetField: orgId
-        default: "ORG001"
-      - targetField: productCategory
-        default: "DEFAULT"
-      - sourceField: classifications.itemFamilyGroup
-        targetField: productClass
-      - sourceField: itemId.primaryId
-        targetField: productId
-      - targetField: sourcingClassification
-        default: "DC"
-      - targetField: status
-        default: "Enabled"
-      - targetField: uom
-        default: "EACH"
-      - sourceField: operationalRules.trackingDateCode
-        targetField: timeSensitive
+    - targetField: enabled
+      default: true
+    - targetField: orgId
+      default: "TBC"
+    - targetField: productCategory
+      default: "DEFAULT"
+    - sourceField: classifications.itemFamilyGroup
+      targetField: productClass
+    - sourceField: itemId.primaryId
+      targetField: productId
+    - targetField: sourcingClassification
+      default: "DC"
+    - targetField: status
+      default: "Enabled"
+    - targetField: uom
+      default: "EACH"
+    - sourceField: operationalRules.trackingDateCode
+      targetField: timeSensitive
+      Condition:
+        options:
+        - eq:
+            field: operationalRules.trackingDateCode
+            value: "E"
+            then: operationalRules.trackingDateCode default true
+            otherwise: default false
+    - sourceField: operationalRules.trackingInformation.trackLotNumbers
+      targetField: lotTracked
+    - targetField: updateUser
+      default: "BY-Connect"
+    - targetField: trackingLevel
+      default: "SKU"
+    segmentMapping:
+    - targetSegment: description
+      fieldMapping:
+      - targetField: short
         Condition:
           options:
           - eq:
-              field: operationalRules.trackingDateCode
-              value: "E"
-              then: operationalRules.trackingDateCode default true
-              otherwise: default false
-      - sourceField: operationalRules.trackingInformation.trackLotNumbers
-        targetField: lotTracked
-      - targetField: updateUser
-        default: "BY-Connect"
-      - targetField: trackingLevel
-        default: "SKU"
-      segmentMapping:
-      - targetSegment: description
-        fieldMapping:
-        - targetField: short
-          Condition:
-            options:
-            - eq:
-                field: description.descriptionType
-                value: "SHORT"
-                then: description.value
-                otherwise: default Ashish
-        - sourceField: description.value
-          targetField: long
-          Condition:
-            options:
-            - eq:
-                field: description.descriptionType
-                value: "LONG"
-                then: description.value
-      segmentListMapping:
-      - targetSegment: prices
-        fieldMapping:
-        - targetField: type
-          default: "UNITPRICE"
-        - sourceField: financialInformation.unitRetailPrice.value
-          targetField: value
-        - sourceField: financialInformation.unitRetailPrice.currencyCode
-          targetField: currency
+              field: description.descriptionType
+              value: "SHORT"
+              then: description.value
+              otherwise: default Ashish
+      - sourceField: description.value
+        targetField: long
+        Condition:
+          options:
+          - eq:
+              field: description.descriptionType
+              value: "LONG"
+              then: description.value
+    segmentListMapping:
+    - targetSegment: prices
+      fieldMapping:
+      - targetField: type
+        default: "UNITPRICE"
+      - sourceField: financialInformation.unitRetailPrice.value
+        targetField: value
+      - sourceField: financialInformation.unitRetailPrice.currencyCode
+        targetField: currency
+      
