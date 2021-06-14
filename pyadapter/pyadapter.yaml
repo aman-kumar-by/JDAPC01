@@ -5,14 +5,14 @@ store:
   host: azenpdconap003
   port: 9830
   basePath: "/messagestore/api/v3"
-  serviceName: CATMAN-GLOBAL
+  serviceName: PYADAPTER-GLOBAL
   serviceType: ADAPTER
-  serviceInstance: CATMAN-CLUSTER
+  serviceInstance: PYADAPTER-CLUSTER
   serviceHost: localhost
   serviceVersion: 2021.1.0
   sender: SAP.GLOBAL
   endpointType: Receiving
-  endpointName: CATMAN.GLOBAL
+  endpointName: PYADAPTER.GLOBAL
   # messageCategory: Request
   # storeStatus: Prepared
   clientId: "ResOwnerClient"
