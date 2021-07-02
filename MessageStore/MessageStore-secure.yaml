@@ -1,6 +1,6 @@
 MSDatabase:
-  user-secure: "AMAN_MS"
-  password-secure: "AMAN_MS"
+  user-secure: "sapadapterlogin"
+  password-secure: "sapadapterlogin"
 
 
 server:
